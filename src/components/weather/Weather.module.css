@@ -1,0 +1,9 @@
+.container {
+  width: 80%;
+  display: flex;
+  margin: 0 auto;
+}
+
+/* img {
+  background-image: url(./../../../public/113.png);
+} */

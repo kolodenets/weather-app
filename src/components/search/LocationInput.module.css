@@ -1,0 +1,40 @@
+.form {
+  position: absolute;
+  top: 30%;
+  right: 0;
+}
+
+.search {
+  background: none;
+  border: none;
+  border-bottom: 1px #ccc solid;
+  color: #fff;
+  font-size: 1.1em;
+}
+.search:focus {
+  outline: none;
+}
+.search::placeholder {
+  color: #fff;
+  opacity: 0.6;
+}
+
+.submit {
+  position: absolute;
+  top: -85%;
+  right: -35%;
+  padding: 1em;
+  margin: 0;
+  border: none;
+  outline: none;
+  background: #fa6d1b;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2em;
+  transition: 0.4s;
+}
+
+.submit:hover {
+  background: #fff !important;
+  color: #000;
+}
