@@ -11,7 +11,7 @@ const LocationInput = () => {
         className={styles.search} 
         placeholder='Search Location...'
       />
-      <button type='submit' className={styles.submit}>
+      <button className={styles.submit}>
         <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
           <AiOutlineSearch/>
         </IconContext.Provider>

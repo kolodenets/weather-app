@@ -8,7 +8,7 @@ import Weather from './components/weather/Weather';
 
 function App() {
   return (
-    <div className="App" style={{background: 'url(./images/day/clear.jpg)'}}>
+    <div className="App" style={{backgroundImage: 'url(' + require('./images/day/clear.jpg') + ')'}}>
       <div className='container'>
           <div className='date-location'>
           <Date/>
