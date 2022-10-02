@@ -6,9 +6,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
     <title>Weather App</title>
   </head>
   <body>
     <div id="root"></div>
+    <script language="Javascript">
+      localStorage.setItem('name', geoplugin_city())
+      localStorage.setItem('country', geoplugin_countryName())
+      localStorage.setItem('lat', geoplugin_latitude())
+      localStorage.setItem('lon', geoplugin_longitude())
+    </script>
   </body>
 </html>
