@@ -5,10 +5,14 @@ import Location from './components/location/Location';
 import Date from './components/date/Date';
 import LocationInput from './components/search/LocationInput';
 import Weather from './components/weather/Weather';
+import { useSelector } from 'react-redux';
+import { checkDayTime } from './helpers/helpers';
 
 function App() {
+  const dayTime = useSelector(state => state.weather)
+
   return (
-    <div className="App" style={{backgroundImage: 'url(' + require('./images/day/clear.jpg') + ')'}}>
+    <div className="App" style={{backgroundImage: 'url(' + require(`./images/${checkDayTime(dayTime.today.icon)}/${dayTime.today.view.toLowerCase()}.jpg`) + ')'}}>
       <div className='container'>
           <div className='date-location'>
           <Date/>
