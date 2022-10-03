@@ -2,20 +2,19 @@
   width: 80%;
   display: flex;
   justify-content: space-between;
-  margin: 5% auto;
+  margin: 2% auto;
 }
 .image {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.today {
+.now {
   display: flex;
   align-items: center;
 }
 .day {
   text-transform: uppercase;
-  background-color: rgba(1, 4, 43, 0.8);
   padding: 3px;
   border-radius: 30%;
 }

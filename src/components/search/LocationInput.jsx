@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { IconContext } from "react-icons";
 import { AiOutlineSearch } from "react-icons/ai"
 import { changeCity } from '../../features/location/locationSlice';
 import styles from './LocationInput.module.css'
 
 const LocationInput = () => {
+
+  const weatherSelector = useSelector(state=> state.weather) 
   const dispatch = useDispatch()
   const [cityName, setCityname] = useState('')
 
@@ -24,7 +26,7 @@ const LocationInput = () => {
         value={cityName}
         onChange={(e) => setCityname(e.target.value)}
       />
-      <button className={styles.submit}
+      <button style={{background: weatherSelector.now.btnColor}} className={styles.submit}
       onClick={getCityWeather}
       >
         <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>

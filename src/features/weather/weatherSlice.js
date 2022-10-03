@@ -4,10 +4,13 @@ const weekDay = {
   icon: ''
 }
 export const initialState = {
-  today: {
+  now: {
     temp: '',
     icon: '',
-    view: ''
+    view: '',
+    btnColor: '#1b1b1b',
+    footerBcgrColor: 'rgba(3, 3, 4, 0.7)',
+    dayBcgrColor: 'rgba(3, 3, 4, 0.8)'
   },
   plusdays1: Object.assign({}, weekDay),
   plusdays2: Object.assign({}, weekDay),
@@ -22,8 +25,8 @@ export function weatherReducer(state = initialState, action) {
     case 'weather/changeWeatherForecast': {
       return {
         ...state,
-        today: {
-          ...state.today,
+        now: {
+          ...state.now,
           temp: action.payload.current.temp,
           icon: action.payload.current.weather[0].icon,
           view: action.payload.current.weather[0].main
@@ -63,6 +66,17 @@ export function weatherReducer(state = initialState, action) {
           weekday: action.payload.daily[6].dt,
           temp: action.payload.daily[6].temp.day,
           icon: action.payload.daily[6].weather[0].icon
+        }
+      }
+    }
+    case 'weather/changeColor': {
+      return {
+        ...state,
+        now: {
+          ...state.now,
+          btnColor: action.payload.btnColor,
+          footerBcgrColor: action.payload.footerBcgrColor,
+          dayBcgrColor: action.payload.dayBcgrColor
         }
       }
     }

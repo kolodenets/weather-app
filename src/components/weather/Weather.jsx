@@ -13,13 +13,13 @@ const Weather = () => {
   }, [])
   return (
     <div className={styles.container}>
-      <div className={styles.today}>
-        <img src={`http://openweathermap.org/img/wn/${weatherSelector.today.icon}@2x.png`} 
+      <div className={styles.now}>
+        <img src={`http://openweathermap.org/img/wn/${weatherSelector.now.icon}@2x.png`} 
         alt="icon" 
         style={{width: '150px'}}/>
         <div className={styles.dayForecast}>
           <p className={styles.day}>Now</p>
-          <p  style={{fontSize: '5em'}}>{Math.round(weatherSelector.today.temp)}&#176;</p>
+          <p  style={{fontSize: '5em'}}>{Math.round(weatherSelector.now.temp)}&#176;</p>
         </div>
       </div>
       <div className={styles.forecast}>

@@ -12,7 +12,7 @@ function App() {
   const dayTime = useSelector(state => state.weather)
 
   return (
-    <div className="App" style={{backgroundImage: 'url(' + require(`./images/${checkDayTime(dayTime.today.icon)}/${dayTime.today.view.toLowerCase()}.jpg`) + ')'}}>
+    <div className="App" style={{backgroundImage: 'url(' + require(`./images/${checkDayTime(dayTime.now.icon)}/${dayTime.now.view.toLowerCase()}.jpg`) + ')'}}>
       <div className='container'>
           <div className='date-location'>
           <Date/>
@@ -21,7 +21,7 @@ function App() {
         <LocationInput/>
         <Calendar/>
       </div>
-      <div className='weather-forecast'>
+      <div style={{backgroundColor: dayTime.now.footerBcgrColor}} className='weather-forecast'>
         <Weather/>
       </div>
     </div>
