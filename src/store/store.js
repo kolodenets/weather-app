@@ -7,6 +7,7 @@ let preloadedState = {
   date: {
     hours: new Date().getHours(),
     min: new Date().getMinutes(),
+    timeZoneOffset: -1 * new Date().getTimezoneOffset()/60,
     day: new Date().getDay(),
     date: new Date().getDate(),
     month: new Date().getMonth(),
@@ -18,8 +19,8 @@ let preloadedState = {
   },
   weather: {
     ...initialState,
-    today: {
-      ...initialState.today,
+    now: {
+      ...initialState.now,
       view: 'clear'
     }
   }

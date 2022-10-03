@@ -38,7 +38,7 @@ export async function getCityName(coords) {
   return data[0].name
 }
 
-export function checkDayTime(str) {
-  const time = str[str.length - 1]
+export function checkDayTime(weatherIconCode) {
+  const time = weatherIconCode[weatherIconCode.length - 1]
   return time === 'd' ? 'day' : 'night'
 }
