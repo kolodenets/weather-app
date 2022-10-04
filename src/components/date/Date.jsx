@@ -1,24 +1,26 @@
 import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { addZeros, getDayofTheWeek, getMonth } from "../../helpers/helpers";
 import styles from "./Date.module.css";
 
-const Date = () => {
+const DateInfo = () => {
+  const [mins, setMins] = useState(new Date().getMinutes())
   const dateSelector = useSelector((state) => state.date);
-  const dispatch = useDispatch();
   const interval = setInterval(() => {
-    dispatch({ type: "date/changeTime" });
+    setMins(new Date().getMinutes())
   }, 1000);
   useEffect(() => {
     interval;
     return clearInterval(interval);
   }, []);
+  
   return (
     <div>
       <div className={styles.container}>
         <span className={styles.time}>
-          {addZeros(dateSelector.hours)}:{addZeros(dateSelector.min)}
+          {addZeros(dateSelector.hours)}:{addZeros(mins)}
         </span>
         <span className={styles.date}>
           {getDayofTheWeek(dateSelector.day)}, {dateSelector.date}{" "}
@@ -29,4 +31,4 @@ const Date = () => {
   );
 };
 
-export default Date;
+export default DateInfo;

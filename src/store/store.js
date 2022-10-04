@@ -1,7 +1,6 @@
 import { applyMiddleware, legacy_createStore as createStore,  compose} from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { persistStore, persistReducer } from 'redux-persist'
-// import storage from 'redux-persist/lib/storage'
 import sessionStorage from 'redux-persist/lib/storage/session'
 import { initialState } from '../features/weather/weatherSlice'
 import rootReducer from '../reducers/rootReducer'

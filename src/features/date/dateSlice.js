@@ -21,13 +21,6 @@ export default function dateReducer(state = initialState, action) {
         year: new Date(action.payload.daily[0].dt*1000).getFullYear()
       }
     }
-    case 'date/changeTime': {
-      return {
-        ...state,
-        hours:(new Date().getUTCHours() + state.timeZoneOffset)%24, 
-        min: new Date().getMinutes()
-      }
-    }
     default: 
   return state
   }
