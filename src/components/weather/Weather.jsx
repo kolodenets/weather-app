@@ -7,6 +7,7 @@ const Weather = () => {
   const weatherSelector = useSelector(state=> state.weather)
   const dispatch = useDispatch()
   useEffect(()=> {
+    if(sessionStorage.getItem('persist:root')) { return }
     fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${localStorage.getItem('lat')}&lon=${localStorage.getItem('lon')}&exclude=minutely,hourly,alerts&appid=b6681e3f0446bc62f33527efc7b781c5&units=metric`)
     .then(response => response.json())
     .then(data=> dispatch({type: 'weather/changeWeatherForecast', payload: data}))
