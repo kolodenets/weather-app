@@ -1,3 +1,5 @@
+import { getTimezoneOffset } from "../../helpers/helpers"
+
 const initialState = {
   hours: 10,
   min: 20,
@@ -19,6 +21,17 @@ export default function dateReducer(state = initialState, action) {
         date: new Date(action.payload.daily[0].dt*1000).getDate(),
         month: new Date(action.payload.daily[0].dt*1000).getMonth(),
         year: new Date(action.payload.daily[0].dt*1000).getFullYear()
+      }
+    }
+    case 'date/changeDateByWeatherBit': {
+      return {
+        ...state,
+        hours: (new Date().getUTCHours() + getTimezoneOffset(action.payload.data[0].timezone))%24,
+        timeZoneOffset: getTimezoneOffset(action.payload.data[0].timezone),
+        day: new Date(action.payload.data[0].ts*1000).getDay(),
+        date: new Date(action.payload.data[0].ts*1000).getDate(),
+        month: new Date(action.payload.data[0].ts*1000).getMonth(),
+        year: new Date(action.payload.data[0].ts*1000).getFullYear()
       }
     }
     default: 

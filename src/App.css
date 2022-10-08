@@ -50,3 +50,12 @@ body {
   height: 23%;
   width: 100%;
 }
+.loader {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 1);
+}

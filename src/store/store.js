@@ -27,6 +27,12 @@ let preloadedState = {
       ...initialState.now,
       view: 'clear'
     }
+  },
+  api: {
+    api: 'openweathermap'
+  },
+  loading: {
+    isloading: false
   }
 }
 

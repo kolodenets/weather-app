@@ -1,3 +1,4 @@
+
 const initialState = {
   name: '',
   country: ''
@@ -12,6 +13,13 @@ export default function locationReducer(state=initialState, action) {
         country: action.payload.country
       }
     }
+    case 'location/changeLocationByWeaterBit': {
+      return {
+        ...state,
+        name: action.payload.city_name,
+        country: action.payload.country_code
+      }
+    }
     default: 
     return state
   }
@@ -19,13 +27,16 @@ export default function locationReducer(state=initialState, action) {
 
 export function changeCity(city) {
   return async function changeCityThunk(dispatch) {
-    const cityResponse = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=b6681e3f0446bc62f33527efc7b781c5`)
+    // dispatch({type: 'loading/changeIsLoading', payload: true})
+    const cityResponse = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=b6681e3f0446bc62f33527efc7b781c5`)
     const cityData = await cityResponse.json()
     dispatch({type: 'location/changeLocation', payload: cityData[0]})
     const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${cityData[0].lat}&lon=${cityData[0].lon}&exclude=minutely,hourly,alerts&appid=b6681e3f0446bc62f33527efc7b781c5&units=metric`)
     const data = await response.json()
     dispatch({type: 'date/changeDate', payload: data})
-    dispatch({type: 'weather/changeWeatherForecast', payload: data})
+    console.log(data)
+    console.log(new Date(data.daily[0].dt*1000).getDay())
+    dispatch({type: 'weather/changeWeatherForecastByopenweathermap', payload: data})
     if(data.current.weather[0].icon.includes('n')) {
       dispatch({type: 'weather/changeColor', payload:{btnColor: '#1b1b1b', footerBcgrColor: 'rgba(3, 3, 4, 0.7)', dayBcgrColor: 'rgba(3, 3, 4, 0.8)'} })
     } else if (data.current.weather[0].main.includes('Clear')) {
@@ -33,5 +44,38 @@ export function changeCity(city) {
     } else {
       dispatch({type: 'weather/changeColor', payload: {btnColor:'#695f5f', footerBcgrColor: 'rgba(34, 35, 39, 0.7)', dayBcgrColor: 'rgba(34, 35, 39, 0.8)'}})
     }
+    // dispatch({type: 'loading/changeIsLoading', payload: false})
+    
+    // fetch('https://api.weatherbit.io/v2.0/current?city=Mazyr&key=a9daafad74dd41e187bc7ff21f7d074b').then((response) => response.json()).then((jsonData) => {
+    //     console.log(jsonData)
+    //   })
+    // fetch('https://api.weatherbit.io/v2.0/forecast/daily?city=Mazyr&key=a9daafad74dd41e187bc7ff21f7d074b').then((response) => response.json()).then((jsonData) => {
+    //     console.log(jsonData)
+    //   })
+  }
+}
+
+export function changeCityByWeatherBit(city) {
+  return async function changeCityThunk(dispatch) {
+    // dispatch({type: 'loading/changeIsLoading', payload: true})
+    const cityResponse = await fetch(`https://api.weatherbit.io/v2.0/current?city=${city}&key=a9daafad74dd41e187bc7ff21f7d074b`)
+    const cityData = await cityResponse.json()
+    const forecastResponse = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=a9daafad74dd41e187bc7ff21f7d074b`)
+    const forecastData = await forecastResponse.json()
+    dispatch({type: 'location/changeLocationByWeaterBit', payload: cityData.data[0]})
+    dispatch({type: 'date/changeDateByWeatherBit', payload: cityData})
+    console.log(forecastData)
+    // console.log(new Date(cityData.data[0].ts*1000 + 6*3600000).getDay())
+    dispatch({type: 'weather/changeCurrentWeatherByWeatherBit', payload: cityData})
+    dispatch({type: 'weather/changeWeatherForecastByWeatherBit', payload: forecastData})
+    console.log(cityData)
+    if(cityData.data[0].weather.icon.includes('n')) {
+      dispatch({type: 'weather/changeColor', payload:{btnColor: '#1b1b1b', footerBcgrColor: 'rgba(3, 3, 4, 0.7)', dayBcgrColor: 'rgba(3, 3, 4, 0.8)'} })
+    } else if (cityData.data[0].weather.description.includes('Clear')) {
+      dispatch({type: 'weather/changeColor', payload: {btnColor:'#fa6d1b', footerBcgrColor: 'rgba(124, 118, 90, 0.7)', dayBcgrColor: 'rgba(124, 118, 90, 0.8)'}})
+    } else {
+      dispatch({type: 'weather/changeColor', payload: {btnColor:'#695f5f', footerBcgrColor: 'rgba(34, 35, 39, 0.7)', dayBcgrColor: 'rgba(34, 35, 39, 0.8)'}})
+    }
+    // dispatch({type: 'loading/changeIsLoading', payload: false})
   }
 }

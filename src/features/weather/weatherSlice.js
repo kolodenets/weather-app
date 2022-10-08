@@ -20,9 +20,9 @@ export const initialState = {
   plusdays6: Object.assign({}, weekDay),
 }
 
-export function weatherReducer(state = initialState, action) {
+export default function weatherReducer(state = initialState, action) {
   switch (action.type) {
-    case 'weather/changeWeatherForecast': {
+    case 'weather/changeWeatherForecastByopenweathermap': {
       return {
         ...state,
         now: {
@@ -67,6 +67,58 @@ export function weatherReducer(state = initialState, action) {
           temp: action.payload.daily[6].temp.day,
           icon: action.payload.daily[6].weather[0].icon
         }
+      }
+    }
+    case 'weather/changeCurrentWeatherByWeatherBit': {
+      return {
+        ...state,
+        now: {
+          ...state.now,
+          temp: action.payload.data[0].temp,
+          icon: action.payload.data[0].weather.icon,
+          view: action.payload.data[0].weather.description
+        }
+      }
+    }
+    case 'weather/changeWeatherForecastByWeatherBit': {
+      return {
+        ...state,
+        plusdays1: {
+          ...state.plusdays1,
+          weekday: action.payload.data[1].ts,
+          temp: action.payload.data[1].temp,
+          icon: action.payload.data[1].weather.icon
+        },
+        plusdays2: {
+          ...state.plusdays2,
+          weekday: action.payload.data[2].ts,
+          temp: action.payload.data[2].temp,
+          icon: action.payload.data[2].weather.icon
+        },
+        plusdays3: {
+          ...state.plusdays3,
+          weekday: action.payload.data[3].ts,
+          temp: action.payload.data[3].temp,
+          icon: action.payload.data[3].weather.icon
+        },
+        plusdays4: {
+          ...state.plusdays4,
+          weekday: action.payload.data[4].ts,
+          temp: action.payload.data[4].temp,
+          icon: action.payload.data[4].weather.icon
+        },
+        plusdays5: {
+          ...state.plusdays5,
+          weekday: action.payload.data[5].ts,
+          temp: action.payload.data[5].temp,
+          icon: action.payload.data[5].weather.icon
+        },
+        plusdays6: {
+          ...state.plusdays6,
+          weekday: action.payload.data[6].ts,
+          temp: action.payload.data[6].temp,
+          icon: action.payload.data[6].weather.icon
+        },
       }
     }
     case 'weather/changeColor': {
