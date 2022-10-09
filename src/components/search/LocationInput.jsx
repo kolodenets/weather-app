@@ -9,6 +9,7 @@ import {
 import styles from "./LocationInput.module.css";
 
 const LocationInput = () => {
+  const [isValid, setIsValid] = useState(true)
   const apiSelector = useSelector((state) => state.api);
   const weatherSelector = useSelector((state) => state.weather);
   const dispatch = useDispatch();
@@ -16,12 +17,20 @@ const LocationInput = () => {
 
   const getCityWeather = (e) => {
     e.preventDefault();
-    if (apiSelector.api === "openweathermap") {
+    const regExp = /^[а-яА-Яa-zA-Z.-]+(?:[\s-][/а-яА-Яa-zA-Z.]+)*$/gi;
+    if(regExp.test(cityName)) {
+      setIsValid(true)
+      if (apiSelector.api === "openweathermap") {
       dispatch(changeCity(cityName));
     } else {
       dispatch(changeCityByWeatherBit(cityName));
     }
     setCityname("");
+    }
+    else {
+      setIsValid(false)
+      console.log('wrong input')
+    }
   };
 
   return (
@@ -32,7 +41,13 @@ const LocationInput = () => {
         placeholder="Search Location..."
         value={cityName}
         onChange={(e) => setCityname(e.target.value)}
+        style={{borderBottom: `${isValid ? '1px #ccc solid' : '1px red solid'}`}}
       />
+      <p 
+        style={{display: `${isValid ? 'none' : 'block'}`}}
+        className={styles.error}
+        >Use letters, space, dot or dash
+      </p>
       <button
         style={{ background: weatherSelector.now.btnColor }}
         className={styles.submit}

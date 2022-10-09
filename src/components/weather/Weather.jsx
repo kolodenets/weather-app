@@ -32,7 +32,7 @@ const Weather = () => {
         <img
           src={
             apiSelector.api === "openweathermap"
-              ? `http://openweathermap.org/img/wn/${weatherSelector.now.icon}@2x.png`
+              ? `https://openweathermap.org/img/wn/${weatherSelector.now.icon}@2x.png`
               : `https://www.weatherbit.io/static/img/icons/${weatherSelector.now.icon}.png`
           }
           alt="icon"

@@ -5,7 +5,7 @@ import styles from "./../weather/Weather.module.css";
 import { getDayofTheWeek } from "../../helpers/helpers";
 
 const DayForecast = ({ day }) => {
-  const dateSlelctor = useSelector((state) => state.date);
+  const dateSelector = useSelector((state) => state.date);
   const apiSelector = useSelector((state) => state.api);
   const daySelector = useSelector((state) => state.weather);
   return (
@@ -17,14 +17,14 @@ const DayForecast = ({ day }) => {
         {getDayofTheWeek(
           new Date(
             daySelector[day].weekday * 1000 +
-              dateSlelctor.timeZoneOffset * 3600000
+            dateSelector.timeZoneOffset * 3600000
           ).getDay()
         )}
       </p>
       <img
         src={
           apiSelector.api === "openweathermap"
-            ? `http://openweathermap.org/img/wn/${daySelector[day].icon}@2x.png`
+            ? `https://openweathermap.org/img/wn/${daySelector[day].icon}@2x.png`
             : `https://www.weatherbit.io/static/img/icons/${daySelector[day].icon}.png`
         }
         alt="icon"

@@ -33,7 +33,7 @@ export const addZeros = (numb) => numb < 10 ? '0' + numb : numb;
 
 
 export async function getCityName(coords) {
-  const result = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${coords.latitude}&lon=${coords.longitude}&limit=5&appid=b6681e3f0446bc62f33527efc7b781c5`)
+  const result = await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${coords.latitude}&lon=${coords.longitude}&limit=5&appid=b6681e3f0446bc62f33527efc7b781c5`)
   const data = await result.json()
   return data[0].name
 }

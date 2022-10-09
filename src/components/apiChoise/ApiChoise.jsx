@@ -28,6 +28,7 @@ const ApiChoise = () => {
 
   return (
     <div className={styles.container}>
+      Choose your service:
       <input
         type="radio"
         checked={apiSelector.api === "openweathermap" ? true : false}
