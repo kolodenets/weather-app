@@ -44,7 +44,7 @@ function App() {
         <LocationInput/>
         <List/>
         <ApiChoise />
-        <IconContext.Provider value={{ style: { verticalAlign: "middle", height: '50px', width: '50px', position: 'absolute', right: '0', bottom: '-150%', cursor: 'pointer' } }}>
+        <IconContext.Provider value={{ style: { verticalAlign: "middle", height: '50px', width: '50px', position: 'absolute', right: '0', bottom: '-110%', cursor: 'pointer' } }}>
           <FcCalendar onClick={() => setActivePopup(true)}/>
         </IconContext.Provider>
         <Popup active={activePopup}>

@@ -4,7 +4,11 @@
   flex-direction: column;
   text-decoration: none;
 }
-
+.text {
+  width: 300px;
+  max-width: 300px;
+  max-height: 300px;
+}
 .submit,
 .closeBtn {
   width: 150px;

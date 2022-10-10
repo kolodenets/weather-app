@@ -1,0 +1,6 @@
+.listWrapper {
+  max-width: 60%;
+  max-height: 40%;
+  overflow-y: auto;
+  padding-top: 4%;
+}

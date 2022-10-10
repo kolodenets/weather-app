@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { isTaskDateEqualToday } from "../../helpers/helpers";
-// import styles from "./List.module.css";
+import styles from './List.module.css'
+
 
 const List = () => {
   const tasksSelector = useSelector(state => state.calendar)
@@ -9,7 +10,7 @@ const List = () => {
   const tasksKeys = Object.keys(tasks).sort()
 
   return (
-    <>
+    <div className={styles.listWrapper}>
       {tasksKeys.map(key => {
         if(isTaskDateEqualToday(key)) {
           return (
@@ -17,7 +18,7 @@ const List = () => {
           )
         }
       })}
-    </>
+    </div>
   )
 };
 

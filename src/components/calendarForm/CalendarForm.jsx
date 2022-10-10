@@ -34,10 +34,23 @@ const CalendarForm = ({closeForm}) => {
   return (
     <form className={styles.form} onSubmit={createTask}>
       <label htmlFor="Date">Enter a date and time:</label>
-      <input  type="datetime-local" id="Date" name="todoDate" value={dateValue} onChange={(e) => setDateValue(e.target.value)} min={new Date().toISOString().substring(0, 16)}/>
+      <input  type="datetime-local" 
+              id="Date" 
+              name="todoDate" 
+              value={dateValue} 
+              onChange={(e) => setDateValue(e.target.value)} 
+              min={new Date().toISOString().substring(0, 16)}/>
 
       <label htmlFor="todo">Enter a task:</label>
-      <textarea type="textarea" id="todo"  name="todoDate" value={taskValue} onChange={(e) => setTaskValue(e.target.value)} rows="5" cols="33" max={500}/>
+      <textarea type="textarea" 
+                id="todo"  
+                name="todoDate" 
+                value={taskValue} 
+                onChange={(e) => setTaskValue(e.target.value)} 
+                rows="5" 
+                cols="33" 
+                max={500}
+                className={styles.text}/>
 
       <input disabled={!canCreate} type="submit" className={styles.submit} value="Create"/>
       <button onClick={closeForm} className={styles.closeBtn}>Close</button>
