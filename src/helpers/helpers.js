@@ -52,3 +52,7 @@ export const choseMainImage = (string) => {
   const weather = string.split(' ');
   return weather[weather.length - 1].toLowerCase()
 }
+
+export const isTaskDateEqualToday = (key) => {
+  return (key.substring(8,10) + key.substring(5,7) + key.substring(0,5)) === (new Date().toISOString().substring(8,10) + new Date().toISOString().substring(5,7) + new Date().toISOString().substring(0,5))
+}

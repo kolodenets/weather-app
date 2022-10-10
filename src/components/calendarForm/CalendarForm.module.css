@@ -1,0 +1,15 @@
+.form {
+  display: flex;
+  color: black;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.submit,
+.closeBtn {
+  width: 150px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+}

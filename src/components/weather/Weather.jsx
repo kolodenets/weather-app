@@ -21,7 +21,7 @@ const Weather = () => {
       .then((response) => response.json())
       .then((data) =>
         dispatch({
-          type: "weather/changeWeatherForecastByopenweathermap",
+          type: "weather/changeWeatherForecastByOpenWeathermap",
           payload: data,
         })
       );

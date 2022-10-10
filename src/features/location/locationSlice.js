@@ -34,7 +34,7 @@ export function changeCity(city) {
     const data = await response.json()
     dispatch({type: 'date/changeDate', payload: data})
     console.log(data)
-    dispatch({type: 'weather/changeWeatherForecastByopenweathermap', payload: data})
+    dispatch({type: 'weather/changeWeatherForecastByOpenWeathermap', payload: data})
     if(data.current.weather[0].icon.includes('n')) {
       dispatch({type: 'weather/changeColor', payload:{btnColor: '#1b1b1b', footerBcgrColor: 'rgba(3, 3, 4, 0.7)', dayBcgrColor: 'rgba(3, 3, 4, 0.8)'} })
     } else if (data.current.weather[0].main.includes('Clear')) {

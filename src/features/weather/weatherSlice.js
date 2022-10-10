@@ -22,7 +22,7 @@ export const initialState = {
 
 export default function weatherReducer(state = initialState, action) {
   switch (action.type) {
-    case 'weather/changeWeatherForecastByopenweathermap': {
+    case 'weather/changeWeatherForecastByOpenWeathermap': {
       return {
         ...state,
         now: {

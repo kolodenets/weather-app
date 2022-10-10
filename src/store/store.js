@@ -33,6 +33,9 @@ let preloadedState = {
   },
   loading: {
     isloading: false
+  },
+  calendar: {
+    tasks: localStorage.tasks ? JSON.parse(localStorage.tasks) : {}
   }
 }
 
