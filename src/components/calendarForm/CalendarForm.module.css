@@ -1,5 +1,7 @@
 .form {
   display: flex;
+  justify-content: center;
+  align-items: center;
   color: black;
   flex-direction: column;
   text-decoration: none;
@@ -7,7 +9,7 @@
 .text {
   width: 300px;
   max-width: 300px;
-  max-height: 300px;
+  max-height: 200px;
 }
 .submit,
 .closeBtn {
@@ -15,5 +17,6 @@
   border-radius: 5px;
   cursor: pointer;
   border: none;
+  margin-top: 10px;
   padding: 10px;
 }

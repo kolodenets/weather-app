@@ -28,10 +28,10 @@ export default function dateReducer(state = initialState, action) {
         ...state,
         hours: (new Date().getUTCHours() + getTimezoneOffset(action.payload.data[0].timezone))%24,
         timeZoneOffset: getTimezoneOffset(action.payload.data[0].timezone),
-        day: new Date(action.payload.data[0].ts*1000).getDay(),
-        date: new Date(action.payload.data[0].ts*1000).getDate(),
-        month: new Date(action.payload.data[0].ts*1000).getMonth(),
-        year: new Date(action.payload.data[0].ts*1000).getFullYear()
+        day: new Date(action.payload.data[0].ts*1000 + getTimezoneOffset(action.payload.data[0].timezone)*3600000).getDay(),
+        date: new Date(action.payload.data[0].ts*1000 + getTimezoneOffset(action.payload.data[0].timezone)*3600000).getDate(),
+        month: new Date(action.payload.data[0].ts*1000 + getTimezoneOffset(action.payload.data[0].timezone)*3600000).getMonth(),
+        year: new Date(action.payload.data[0].ts*1000 + getTimezoneOffset(action.payload.data[0].timezone)*3600000).getFullYear()
       }
     }
     default: 

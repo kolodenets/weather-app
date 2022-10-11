@@ -6,6 +6,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <script>
+      var XMLHttp = new XMLHttpRequest();
+      XMLHttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+          var ipwhois = JSON.parse(this.responseText);
+          localStorage.setItem('lat', ipwhois.latitude)
+          localStorage.setItem('lon', ipwhois.longitude)
+          localStorage.setItem('name', ipwhois.city)
+          localStorage.setItem('country', ipwhois.country_code)
+        }
+      };
+      XMLHttp.open('GET', 'https://ipwho.is/', true);
+      XMLHttp.send();
+    </script>
     <title>Weather App</title>
   </head>
   <body>

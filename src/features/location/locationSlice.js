@@ -33,7 +33,6 @@ export function changeCity(city) {
     const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${cityData[0].lat}&lon=${cityData[0].lon}&exclude=minutely,hourly,alerts&appid=b6681e3f0446bc62f33527efc7b781c5&units=metric`)
     const data = await response.json()
     dispatch({type: 'date/changeDate', payload: data})
-    console.log(data)
     dispatch({type: 'weather/changeWeatherForecastByOpenWeathermap', payload: data})
     if(data.current.weather[0].icon.includes('n')) {
       dispatch({type: 'weather/changeColor', payload:{btnColor: '#1b1b1b', footerBcgrColor: 'rgba(3, 3, 4, 0.7)', dayBcgrColor: 'rgba(3, 3, 4, 0.8)'} })

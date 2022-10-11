@@ -29,7 +29,6 @@ const LocationInput = () => {
     }
     else {
       setIsValid(false)
-      console.log('wrong input')
     }
   };
 

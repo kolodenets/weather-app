@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  margin-top: 10px;
+}
+
+.time {
+  display: flex;
+  border-radius: 5px;
+  margin-right: 10px;
+width: 50px;
+height: 25px;
+justify-content: center;
+align-items: center;
+}
+
+.task {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 500px;
+  overflow: hidden;
+}
+
+.task p {
+  text-overflow: inherit;
+}

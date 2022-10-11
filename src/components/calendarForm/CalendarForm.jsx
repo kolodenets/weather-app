@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 const CalendarForm = ({closeForm}) => {
   const dispatch = useDispatch()
-  const [dateValue, setDateValue] = useState(new Date())
+  const [dateValue, setDateValue] = useState('')
   const [taskValue, setTaskValue] = useState('')
 
   const createTask = (e) => {
@@ -25,7 +25,7 @@ const CalendarForm = ({closeForm}) => {
     }
 
     dispatch({type: 'calendar/addTask', payload: taskObj})
-    setDateValue(new Date())
+    setDateValue('')
     setTaskValue('')
   }
 

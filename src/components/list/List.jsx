@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { isTaskDateEqualToday } from "../../helpers/helpers";
+import Task from "../task/Task";
 import styles from './List.module.css'
 
 
@@ -14,7 +15,7 @@ const List = () => {
       {tasksKeys.map(key => {
         if(isTaskDateEqualToday(key)) {
           return (
-            <div key={key}>{key.substring(11,16)} : {tasksSelector.tasks[key]}</div>
+            <Task key={key} time={key.substring(11,16)} task={tasksSelector.tasks[key]}/>
           )
         }
       })}
