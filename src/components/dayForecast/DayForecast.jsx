@@ -28,7 +28,6 @@ const DayForecast = ({ day }) => {
             : `https://www.weatherbit.io/static/img/icons/${daySelector[day].icon}.png`
         }
         alt="icon"
-        style={{ width: "80px" }}
       />
       <p className={styles.degrees}>
         {Math.round(daySelector[day].temp)}&#176;

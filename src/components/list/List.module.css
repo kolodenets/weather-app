@@ -1,5 +1,29 @@
 .listWrapper {
   max-width: 60%;
-  max-height: 40%;
+  height: 48vh;
   margin-top: 50px;
+  overflow-y: auto;
+}
+
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .listWrapper {
+    font-size: 0.75em;
+    margin-top: 30px;
+    height: 51vh;
+  }
+}
+@media (min-width: 320px) and (max-width: 479px) {
+  .listWrapper {
+    max-width: 95%;
+    height: 41vh;
+    margin-top: 50px;
+  }
+}
+@media (max-width: 319px) {
+  .listWrapper {
+    margin-top: 35px;
+    max-width: 95%;
+    height: 41vh;
+  }
 }

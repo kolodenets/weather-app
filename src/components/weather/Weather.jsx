@@ -35,11 +35,10 @@ const Weather = () => {
               : `https://www.weatherbit.io/static/img/icons/${weatherSelector.now.icon}.png`
           }
           alt="icon"
-          style={{ width: "150px" }}
         />
         <div className={styles.dayForecast}>
           <p className={styles.day}>Now</p>
-          <p style={{ fontSize: "5em" }}>
+          <p className={styles.temp}>
             {Math.round(weatherSelector.now.temp)}&#176;
           </p>
         </div>

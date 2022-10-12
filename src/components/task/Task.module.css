@@ -7,20 +7,41 @@
   display: flex;
   border-radius: 5px;
   margin-right: 10px;
-width: 50px;
-height: 25px;
-justify-content: center;
-align-items: center;
+  width: 50px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
 }
 
 .task {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  max-width: 500px;
   overflow: hidden;
+  width: 85%;
 }
 
 .task p {
   text-overflow: inherit;
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  .task {
+    font-size: 0.875em;
+  }
+  .time {
+    font-size: 0.875em;
+    width: 40px;
+    height: 20px;
+  }
+}
+@media (max-width: 319px) {
+  .task {
+    font-size: 0.75em;
+  }
+  .time {
+    font-size: 0.75em;
+    width: 40px;
+    height: 20px;
+  }
 }

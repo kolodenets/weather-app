@@ -33,7 +33,7 @@ const CalendarForm = ({closeForm}) => {
 
   return (
     <form className={styles.form} onSubmit={createTask}>
-      <label htmlFor="Date">Enter a date and time:</label>
+      <label htmlFor="Date">Enter date and time:</label>
       <input  type="datetime-local" 
               id="Date" 
               name="todoDate" 
@@ -41,7 +41,7 @@ const CalendarForm = ({closeForm}) => {
               onChange={(e) => setDateValue(e.target.value)} 
               min={new Date().toISOString().substring(0, 16)}/>
 
-      <label htmlFor="todo">Enter a task:</label>
+      <label htmlFor="todo">Enter task:</label>
       <textarea type="textarea" 
                 id="todo"  
                 name="todoDate" 
