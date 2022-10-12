@@ -16,6 +16,7 @@ import ApiChoise from './components/apiChoise/ApiChoise';
 import Popup from './components/popup/Popup';
 import CalendarForm from './components/calendarForm/CalendarForm';
 
+
 const override = {
   display: "block",
   borderColor: "red",
@@ -25,6 +26,8 @@ function App() {
   const isLoadingSelector = useSelector(state => state.loading)
   const dayTime = useSelector(state => state.weather)
   const [activePopup, setActivePopup] = useState(false)
+
+
 
   const closeForm = (e) => {
     e.preventDefault()
@@ -44,8 +47,8 @@ function App() {
         <LocationInput/>
         <List/>
         <ApiChoise />
-        <IconContext.Provider value={{ style: { verticalAlign: "middle", height: '50px', width: '50px', position: 'absolute', right: '0', top: '40em', cursor: 'pointer' } }}>
-          <FcCalendar onClick={() => setActivePopup(true)}/>
+        <IconContext.Provider value={{ style: { verticalAlign: "middle"} }}>
+          <FcCalendar id='calendar' onClick={() => setActivePopup(true)}/>
         </IconContext.Provider>
         <Popup active={activePopup}>
           <CalendarForm closeForm={closeForm}/>

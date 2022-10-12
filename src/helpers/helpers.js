@@ -1,4 +1,3 @@
-import timezones from "./timezone";
 export const getDayofTheWeek = (day) => {
   const weekDay = [
     'Sun',
@@ -41,11 +40,6 @@ export async function getCityName(coords) {
 export function checkDayTime(weatherIconCode) {
   const time = weatherIconCode[weatherIconCode.length - 1]
   return time === 'd' ? 'day' : 'night'
-}
-
-export const getTimezoneOffset = (timezone) => {
-  const offset = timezones[timezone];
-  return Number(offset.substring(0,3))
 }
 
 export const choseMainImage = (string) => {

@@ -1,4 +1,6 @@
-import { getTimezoneOffset } from "../../helpers/helpers"
+
+const moment = require('moment-timezone');
+
 
 const initialState = {
   hours: 10,
@@ -26,12 +28,12 @@ export default function dateReducer(state = initialState, action) {
     case 'date/changeDateByWeatherBit': {
       return {
         ...state,
-        hours: (new Date().getUTCHours() + getTimezoneOffset(action.payload.data[0].timezone))%24,
-        timeZoneOffset: getTimezoneOffset(action.payload.data[0].timezone),
-        day: new Date(action.payload.data[0].ts*1000 + getTimezoneOffset(action.payload.data[0].timezone)*3600000).getDay(),
-        date: new Date(action.payload.data[0].ts*1000 + getTimezoneOffset(action.payload.data[0].timezone)*3600000).getDate(),
-        month: new Date(action.payload.data[0].ts*1000 + getTimezoneOffset(action.payload.data[0].timezone)*3600000).getMonth(),
-        year: new Date(action.payload.data[0].ts*1000 + getTimezoneOffset(action.payload.data[0].timezone)*3600000).getFullYear()
+        hours: Number(moment().tz(action.payload.data[0].timezone).format().substring(11,13)),
+        timeZoneOffset: Number(moment().tz(action.payload.data[0].timezone).format('Z').substring(0,3)),
+        day: new Date(action.payload.data[0].ts*1000 + new Date().getTimezoneOffset()*60000 + Number(moment().tz(action.payload.data[0].timezone).format('Z').substring(0,3))*3600000).getDay(),
+        date: moment().tz(action.payload.data[0].timezone).format().substring(8,10),
+        month: moment().tz(action.payload.data[0].timezone).format().substring(5,7) - 1,
+        year: moment().tz(action.payload.data[0].timezone).format().substring(0,4)
       }
     }
     default: 
