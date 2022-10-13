@@ -1,7 +1,7 @@
 import { applyMiddleware, legacy_createStore as createStore,  compose} from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { persistStore, persistReducer } from 'redux-persist'
-import sessionStorage from 'redux-persist/lib/storage/session'
+import session from 'redux-persist/es/storage/session' 
 import { initialState } from '../features/weather/weatherSlice'
 import rootReducer from '../reducers/rootReducer'
 
@@ -18,8 +18,8 @@ let preloadedState = {
     year: new Date().getFullYear()
   },
   location: {
-    name: localStorage.getItem('name'),
-    country: localStorage.getItem('country')
+    name: sessionStorage.getItem('name'),
+    country: sessionStorage.getItem('country')
   },
   weather: {
     ...initialState,
@@ -41,7 +41,7 @@ let preloadedState = {
 
 const persistConfig = {
   key: 'root',
-  storage: sessionStorage,
+  storage: session,
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

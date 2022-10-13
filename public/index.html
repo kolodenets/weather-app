@@ -11,10 +11,10 @@
       XMLHttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
           var ipwhois = JSON.parse(this.responseText);
-          localStorage.setItem('lat', ipwhois.latitude)
-          localStorage.setItem('lon', ipwhois.longitude)
-          localStorage.setItem('name', ipwhois.city)
-          localStorage.setItem('country', ipwhois.country_code)
+          sessionStorage.setItem('lat', ipwhois.latitude)
+          sessionStorage.setItem('lon', ipwhois.longitude)
+          sessionStorage.setItem('name', ipwhois.city)
+          sessionStorage.setItem('country', ipwhois.country_code)
         }
       };
       XMLHttp.open('GET', 'https://ipwho.is/', true);

@@ -15,7 +15,7 @@ const Weather = () => {
     }
 
     fetch(
-      `https://api.openweathermap.org/data/3.0/onecall?lat=${localStorage.getItem("lat")}&lon=${localStorage.getItem("lon")}&exclude=minutely,hourly,alerts&appid=b6681e3f0446bc62f33527efc7b781c5&units=metric`)
+      `https://api.openweathermap.org/data/3.0/onecall?lat=${sessionStorage.getItem("lat")}&lon=${sessionStorage.getItem("lon")}&exclude=minutely,hourly,alerts&appid=b6681e3f0446bc62f33527efc7b781c5&units=metric`)
       .then((response) => response.json())
       .then((data) =>
         dispatch({

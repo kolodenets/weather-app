@@ -98,8 +98,8 @@ body {
   }
   #calendar {
     top: 78vh;
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
   }
 }
 @media (max-width: 319px) {
@@ -112,8 +112,8 @@ body {
   }
   #calendar {
     top: 76vh;
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
   }
 }
 

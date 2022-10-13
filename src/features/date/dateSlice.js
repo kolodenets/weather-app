@@ -1,6 +1,4 @@
-
 const moment = require('moment-timezone');
-
 
 const initialState = {
   hours: 10,
@@ -14,7 +12,7 @@ const initialState = {
 
 export default function dateReducer(state = initialState, action) {
   switch (action.type) {
-    case 'date/changeDate': {
+    case 'date/changeDateByOpenWeather': {
       return {
         ...state,
         hours: (new Date().getUTCHours() + (action.payload.timezone_offset / 3600))%24,

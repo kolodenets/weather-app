@@ -13,6 +13,11 @@ export default function calendarReducer(state = initialState, action) {
         }
       }
     }
+    case 'calendar/getTodaysTasks': {
+      return {
+        ...state
+      }
+    }
     default: 
   return state
   }

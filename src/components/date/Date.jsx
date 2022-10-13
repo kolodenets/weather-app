@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeCity, changeCityByWeatherBit } from "../../features/location/locationSlice";
 import { addZeros, getDayofTheWeek, getMonth } from "../../helpers/helpers";
@@ -15,15 +14,19 @@ const DateInfo = () => {
 
   const interval = setInterval(() => {
     setMins(new Date().getMinutes())
-  }, 1000);
+  }, 60000);
 
   useEffect(() => {
     interval;
     if(mins === 0) {
       if(apiSelector.api === 'openweathermap'){
+        if(new Date().getHours() === 0) {
+          dispatch({type: 'calendar/getTodaysTasks'})
+        }
         dispatch(changeCity(citySelector.name))
       }
       else {
+        dispatch({type: 'calendar/getTodaysTasks'})
         dispatch(changeCityByWeatherBit(citySelector.name))
       }
     }
