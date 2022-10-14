@@ -1,0 +1,96 @@
+.form {
+  position: absolute;
+  top: 50px;
+  right: 0;
+}
+
+.search {
+  background: none;
+  border: none;
+  border-bottom: 1px #ccc solid;
+  color: #fff;
+  font-size: 1.1em;
+}
+.search:focus {
+  outline: none;
+}
+.search::placeholder {
+  color: #fff;
+  opacity: 0.6;
+}
+
+.submit {
+  position: absolute;
+  top: -85%;
+  right: -35%;
+  padding: 1em;
+  margin: 0;
+  border: none;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2em;
+  transition: 0.4s;
+}
+
+.submit:hover {
+  background: #fff !important;
+  color: #000;
+}
+
+.error {
+  position: absolute;
+  color: red;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .submit {
+    right: -30%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .form {
+    top: 35px;
+    font-size: 0.75em;
+  }
+  .search {
+    width: 100px;
+  }
+  .error {
+    font-size: 0.75em;
+  }
+  .submit {
+    top: -10%;
+    right: -35%;
+    padding: 0.7em;
+    font-size: 1em;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+  .form {
+    top: 35px;
+    font-size: 0.75em;
+    right: 25%;
+  }
+  .submit {
+    top: -10%;
+    right: -28%;
+    padding: 0.6em;
+    font-size: 1em;
+  }
+}
+@media (max-width: 319px) {
+  .form {
+    top: 35px;
+    font-size: 0.75em;
+    right: 22%;
+  }
+  .submit {
+    top: -10%;
+    right: -28%;
+    padding: 0.6em;
+    font-size: 1em;
+  }
+}
