@@ -5,6 +5,8 @@ import { PersistGate } from 'redux-persist/integration/react'
 import store, {persistor} from './store/store';
 import App from './App';
 
+store.dispatch({type:'loading/changeIsLoading', payload: true})
+
 const container = document.getElementById('root');
 const root = createRoot(container);
 

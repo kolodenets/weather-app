@@ -1,5 +1,6 @@
 const initialState = {
-  tasks: {}
+  tasks: {},
+  today: new Date().toLocaleDateString()
 }
 
 export default function calendarReducer(state = initialState, action) {
@@ -15,7 +16,8 @@ export default function calendarReducer(state = initialState, action) {
     }
     case 'calendar/getTodaysTasks': {
       return {
-        ...state
+        ...state,
+        today: action.payload
       }
     }
     default: 

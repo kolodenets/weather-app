@@ -32,10 +32,11 @@ let preloadedState = {
     api: 'openweathermap'
   },
   loading: {
-    isloading: true
+    isloading: false
   },
   calendar: {
-    tasks: localStorage.tasks ? JSON.parse(localStorage.tasks) : {}
+    tasks: localStorage.tasks ? JSON.parse(localStorage.tasks) : {},
+    today: new Date().toLocaleDateString()
   }
 }
 

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from "prop-types";
+
 import styles from './CalendarForm.module.css'
-import { useState } from 'react';
 
 const CalendarForm = ({closeForm}) => {
   const dispatch = useDispatch()

@@ -46,20 +46,29 @@ export function changeCity(city) {
 
 export function changeCityByWeatherBit(city) {
   return async function changeCityThunk(dispatch) {
-    const cityResponse = await fetch(`https://api.weatherbit.io/v2.0/current?city=${city}&key=a9daafad74dd41e187bc7ff21f7d074b`)
-    const cityData = await cityResponse.json()
-    const forecastResponse = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=a9daafad74dd41e187bc7ff21f7d074b`)
-    const forecastData = await forecastResponse.json()
-    dispatch({type: 'location/changeLocationByWeaterBit', payload: cityData.data[0]})
-    dispatch({type: 'date/changeDateByWeatherBit', payload: cityData})
-    dispatch({type: 'weather/changeCurrentWeatherByWeatherBit', payload: cityData})
-    dispatch({type: 'weather/changeWeatherForecastByWeatherBit', payload: forecastData})
-    if(cityData.data[0].weather.icon.includes('n')) {
-      dispatch({type: 'weather/changeColor', payload:{btnColor: '#1b1b1b', footerBcgrColor: 'rgba(3, 3, 4, 0.7)', dayBcgrColor: 'rgba(3, 3, 4, 0.8)'} })
-    } else if (cityData.data[0].weather.description.includes('Clear')) {
-      dispatch({type: 'weather/changeColor', payload: {btnColor:'#fa6d1b', footerBcgrColor: 'rgba(124, 118, 90, 0.7)', dayBcgrColor: 'rgba(124, 118, 90, 0.8)'}})
-    } else {
-      dispatch({type: 'weather/changeColor', payload: {btnColor:'#695f5f', footerBcgrColor: 'rgba(34, 35, 39, 0.7)', dayBcgrColor: 'rgba(34, 35, 39, 0.8)'}})
+    try{
+      const cityResponse = await fetch(`https://api.weatherbit.io/v2.0/current?city=${city}&key=a9daafad74dd41e187bc7ff21f7d074b`)
+      const cityData = await cityResponse.json()
+      
+      const forecastResponse = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=a9daafad74dd41e187bc7ff21f7d074b`)
+      const forecastData = await forecastResponse.json()
+      dispatch({type: 'location/changeLocationByWeaterBit', payload: cityData.data[0]})
+      dispatch({type: 'date/changeDateByWeatherBit', payload: cityData})
+      dispatch({type: 'weather/changeCurrentWeatherByWeatherBit', payload: cityData})
+      dispatch({type: 'weather/changeWeatherForecastByWeatherBit', payload: forecastData})
+      if(cityData.data[0].weather.icon.includes('n')) {
+        dispatch({type: 'weather/changeColor', payload:{btnColor: '#1b1b1b', footerBcgrColor: 'rgba(3, 3, 4, 0.7)', dayBcgrColor: 'rgba(3, 3, 4, 0.8)'} })
+      } else if (cityData.data[0].weather.description.includes('Clear')) {
+        dispatch({type: 'weather/changeColor', payload: {btnColor:'#fa6d1b', footerBcgrColor: 'rgba(124, 118, 90, 0.7)', dayBcgrColor: 'rgba(124, 118, 90, 0.8)'}})
+      } else {
+        dispatch({type: 'weather/changeColor', payload: {btnColor:'#695f5f', footerBcgrColor: 'rgba(34, 35, 39, 0.7)', dayBcgrColor: 'rgba(34, 35, 39, 0.8)'}})
+      }
+    } catch(err) {
+      if(err.message === 'Failed to fetch') {
+        alert("Your request count is over the allowed limit of 50 per day")
+      } else {
+        throw new Error()
+      }
     }
   }
 }

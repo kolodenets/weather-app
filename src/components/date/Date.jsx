@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { changeCity, changeCityByWeatherBit } from "../../features/location/locationSlice";
 import { addZeros, getDayofTheWeek, getMonth } from "../../helpers/helpers";
 import styles from "./Date.module.css";
@@ -11,22 +11,20 @@ const DateInfo = () => {
   const dateSelector = useSelector((state) => state.date);
   const apiSelector = useSelector((state) => state.api);
   const citySelector = useSelector((state) => state.location);
-
   const interval = setInterval(() => {
     setMins(new Date().getMinutes())
-  }, 60000);
+  }, 2000);
 
   useEffect(() => {
     interval;
     if(mins === 0) {
-      if(apiSelector.api === 'openweathermap'){
-        if(new Date().getHours() === 0) {
-          dispatch({type: 'calendar/getTodaysTasks'})
+      if(new Date().toLocaleTimeString().substring(0,2) === '00') {
+          dispatch({type: 'calendar/getTodaysTasks', payload: new Date().toLocaleDateString()})
         }
+      if(apiSelector.api === 'openweathermap'){
         dispatch(changeCity(citySelector.name))
       }
       else {
-        dispatch({type: 'calendar/getTodaysTasks'})
         dispatch(changeCityByWeatherBit(citySelector.name))
       }
     }

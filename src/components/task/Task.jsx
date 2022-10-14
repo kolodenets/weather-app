@@ -1,7 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import PropTypes from "prop-types";
 import styles from './Task.module.css'
-import { useSelector } from 'react-redux';
 
 const Task = ({time, task}) => {
   const weatherSelector = useSelector(state => state.weather)
@@ -15,7 +16,7 @@ const Task = ({time, task}) => {
 
 Task.propTypes = {
   time: PropTypes.string,
-  task: PropTypes.string,
+  task: PropTypes.any,
 };
 
 export default Task;
