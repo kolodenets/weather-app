@@ -1,6 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
+
 import styles from "./../weather/Weather.module.css";
 import { getDayofTheWeek } from "../../helpers/helpers";
 

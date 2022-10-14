@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IconContext } from "react-icons";
 import { AiOutlineSearch } from "react-icons/ai";
-import {
-  changeCity,
-  changeCityByWeatherBit,
-} from "../../features/location/locationSlice";
+
+import { changeCity, changeCityByWeatherBit } from "../../features/location/locationSlice";
 import styles from "./LocationInput.module.css";
 
 const LocationInput = () => {
@@ -18,7 +16,7 @@ const LocationInput = () => {
   const getCityWeather = (e) => {
     e.preventDefault();
     const regExp = /^[а-яА-Яa-zA-Z.-]+(?:[\s-][/а-яА-Яa-zA-Z.]+)*$/gi;
-    if(regExp.test(cityName)) {
+    if(regExp.test(cityName.trim())) {
       setIsValid(true)
       if (apiSelector.api === "openweathermap") {
       dispatch(changeCity(cityName));

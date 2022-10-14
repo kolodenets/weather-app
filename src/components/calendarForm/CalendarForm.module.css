@@ -19,6 +19,22 @@
   border: none;
   margin-top: 10px;
   padding: 10px;
+  
+}
+.submit:disabled {
+  cursor: auto;
+  pointer-events: none;
+}
+
+.submit:hover,
+.closeBtn:hover {
+  background-color: rgb(63, 61, 61);
+  color: rgb(255, 255, 255);
+}
+.submit:active,
+.closeBtn:active {
+  background-color: rgb(128, 123, 123);
+  color: rgb(255, 255, 255);
 }
 
 @media (min-width: 480px) and (max-width: 767px) {

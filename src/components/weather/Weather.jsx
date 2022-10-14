@@ -13,16 +13,21 @@ const Weather = () => {
     if (sessionStorage.getItem("persist:root")) {
       return;
     }
-
-    fetch(
-      `https://api.openweathermap.org/data/3.0/onecall?lat=${sessionStorage.getItem("lat")}&lon=${sessionStorage.getItem("lon")}&exclude=minutely,hourly,alerts&appid=b6681e3f0446bc62f33527efc7b781c5&units=metric`)
-      .then((response) => response.json())
-      .then((data) =>
-        dispatch({
-          type: "weather/changeWeatherForecastByOpenWeathermap",
-          payload: data,
-        })
-      );
+    try {
+      fetch(
+            `https://api.openweathermap.org/data/3.0/onecall?lat=${sessionStorage.getItem("lat")}&lon=${sessionStorage.getItem("lon")}&exclude=minutely,hourly,alerts&appid=b6681e3f0446bc62f33527efc7b781c5&units=metric`)
+            .then((response) => response.json())
+            .then((data) =>
+              dispatch({
+                type: "weather/changeWeatherForecastByOpenWeathermap",
+                payload: data,
+              })
+            )
+    } catch(err) {
+      console.log(err)
+    } finally {
+      dispatch({type:'loading/changeIsLoading', payload: false})
+    }
   }, []);
 
   return (

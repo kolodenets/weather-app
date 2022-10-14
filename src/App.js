@@ -27,12 +27,11 @@ function App() {
   const dayTime = useSelector(state => state.weather)
   const [activePopup, setActivePopup] = useState(false)
 
-
-
   const closeForm = (e) => {
     e.preventDefault()
     setActivePopup(false)
   }
+
   return (
     <>
     <div style={{display: `${isLoadingSelector.isLoading ? 'flex': 'none'}`}} className='loader'>
