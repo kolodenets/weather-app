@@ -18,8 +18,8 @@ let preloadedState = {
     year: new Date().getFullYear()
   },
   location: {
-    name: sessionStorage.getItem('name'),
-    country: sessionStorage.getItem('country')
+    name: sessionStorage.getItem('name') || 'Minsk',
+    country: sessionStorage.getItem('country') || 'BY'
   },
   weather: {
     ...initialState,

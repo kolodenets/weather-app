@@ -15,7 +15,7 @@ export default function dateReducer(state = initialState, action) {
     case 'date/changeDateByOpenWeather': {
       return {
         ...state,
-        hours: (new Date().getUTCHours() + (action.payload.timezone_offset / 3600))%24,
+        hours: (new Date().getUTCHours() + Math.floor(action.payload.timezone_offset / 3600))%24,
         timeZoneOffset: action.payload.timezone_offset / 3600,
         day: new Date(action.payload.daily[0].dt*1000).getDay(),
         date: new Date(action.payload.daily[0].dt*1000).getDate(),
