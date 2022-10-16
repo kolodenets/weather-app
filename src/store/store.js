@@ -9,17 +9,17 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 let preloadedState = {
   date: {
-    hours: new Date().getHours(),
+    hours: new Date().getUTCHours() - 4,
     min: new Date().getMinutes(),
-    timeZoneOffset: -1 * new Date().getTimezoneOffset()/60,
+    timeZoneOffset: -4,
     day: new Date().getDay(),
     date: new Date().getDate(),
     month: new Date().getMonth(),
     year: new Date().getFullYear()
   },
   location: {
-    name: sessionStorage.getItem('name') || 'Minsk',
-    country: sessionStorage.getItem('country') || 'BY'
+    name: 'New-York',
+    country: 'US'
   },
   weather: {
     ...initialState,

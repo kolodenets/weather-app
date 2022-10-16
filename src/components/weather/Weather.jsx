@@ -14,20 +14,48 @@ const Weather = () => {
       return;
     }
     try {
-      fetch(
-            `https://api.openweathermap.org/data/3.0/onecall?lat=${sessionStorage.getItem("lat")}&lon=${sessionStorage.getItem("lon")}&exclude=minutely,hourly,alerts&appid=b6681e3f0446bc62f33527efc7b781c5&units=metric`)
-            .then((response) => response.json())
-            .then((data) =>
-              dispatch({
-                type: "weather/changeWeatherForecastByOpenWeathermap",
-                payload: data,
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position){
+            fetch(
+              `https://api.openweathermap.org/data/3.0/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&exclude=minutely,hourly,alerts&appid=b6681e3f0446bc62f33527efc7b781c5&units=metric`)
+              .then((response) => response.json())
+              .then((data) => {
+                dispatch({
+                  type: "weather/changeWeatherForecastByOpenWeathermap",
+                  payload: data,
+                })
+                dispatch({type: 'date/changeDateByOpenWeather', payload: data})
               })
-            )
+            fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&limit=1&appid=b6681e3f0446bc62f33527efc7b781c5`)
+              .then((response) => response.json())
+              .then((data) => {
+                dispatch({type: 'location/changeLocation', payload: data[0]})
+                
+              }
+              )
+              dispatch({type:'loading/changeIsLoading', payload: false})
+              return;
+          });
+        } 
+      fetch(
+        `https://api.openweathermap.org/data/3.0/onecall?lat=40.71278&lon=-74.00611&exclude=minutely,hourly,alerts&appid=b6681e3f0446bc62f33527efc7b781c5&units=metric`)
+        .then((response) => response.json())
+        .then((data) =>
+          dispatch({
+            type: "weather/changeWeatherForecastByOpenWeathermap",
+            payload: data,
+          })
+        )
+      fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=40.71278&lon=-74.00611&limit=1&appid=b6681e3f0446bc62f33527efc7b781c5`)
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({type: 'location/changeLocation', payload: data[0]})
+      })
+      dispatch({type:'loading/changeIsLoading', payload: false})
     } catch(err) {
       console.log(err)
-    } finally {
-      dispatch({type:'loading/changeIsLoading', payload: false})
-    }
+    } 
+
   }, []);
 
   return (
