@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getGeolocation } from "../../features/location/locationSlice";
 
 import DayForecast from "../dayForecast/DayForecast";
 import styles from "./Weather.module.css";
 
 const Weather = () => {
-  const apiSelector = useSelector((state) => state.api);
+  const apiSelector = useSelector((state) => state.service);
   const weatherSelector = useSelector((state) => state.weather);
   const dispatch = useDispatch();
 
@@ -14,20 +15,19 @@ const Weather = () => {
       return;
     }
     try {
-      fetch(
-            `https://api.openweathermap.org/data/3.0/onecall?lat=${sessionStorage.getItem("lat")}&lon=${sessionStorage.getItem("lon")}&exclude=minutely,hourly,alerts&appid=b6681e3f0446bc62f33527efc7b781c5&units=metric`)
-            .then((response) => response.json())
-            .then((data) =>
-              dispatch({
-                type: "weather/changeWeatherForecastByOpenWeathermap",
-                payload: data,
-              })
-            )
+      dispatch(getGeolocation({coords: {
+        latitude: '40.71278',
+        longitude: '-74.00611'
+      }}))
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+          dispatch(getGeolocation(position))
+        })
+      }
     } catch(err) {
       console.log(err)
-    } finally {
-      dispatch({type:'loading/changeIsLoading', payload: false})
-    }
+    } 
+
   }, []);
 
   return (
@@ -35,7 +35,7 @@ const Weather = () => {
       <div className={styles.now}>
         <img
           src={
-            apiSelector.api === "openweathermap"
+            apiSelector.service === "openweathermap"
               ? `https://openweathermap.org/img/wn/${weatherSelector.now.icon}@2x.png`
               : `https://www.weatherbit.io/static/img/icons/${weatherSelector.now.icon}.png`
           }

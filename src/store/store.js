@@ -1,25 +1,32 @@
-import { applyMiddleware, legacy_createStore as createStore,  compose} from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import { persistStore, persistReducer } from 'redux-persist'
-import session from 'redux-persist/es/storage/session' 
+import { configureStore } from '@reduxjs/toolkit'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
+import session from 'redux-persist/lib/storage/session'
 import { initialState } from '../features/weather/weatherSlice'
 import rootReducer from '../reducers/rootReducer'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 let preloadedState = {
   date: {
-    hours: new Date().getHours(),
+    hours: new Date().getUTCHours() - 4,
     min: new Date().getMinutes(),
-    timeZoneOffset: -1 * new Date().getTimezoneOffset()/60,
+    timeZoneOffset: -4,
     day: new Date().getDay(),
     date: new Date().getDate(),
     month: new Date().getMonth(),
     year: new Date().getFullYear()
   },
   location: {
-    name: sessionStorage.getItem('name') || 'Minsk',
-    country: sessionStorage.getItem('country') || 'BY'
+    name: 'New-York',
+    country:'US'
   },
   weather: {
     ...initialState,
@@ -28,8 +35,8 @@ let preloadedState = {
       view: 'clear'
     }
   },
-  api: {
-    api: 'openweathermap'
+  service: {
+    service: 'openweathermap'
   },
   loading: {
     isloading: false
@@ -39,17 +46,26 @@ let preloadedState = {
     today: new Date().toLocaleDateString()
   }
 }
-
 const persistConfig = {
   key: 'root',
+  version: 1,
   storage: session,
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-const asyncEnhancer = applyMiddleware(thunkMiddleware)
 
-const store = createStore(persistedReducer, preloadedState, composeEnhancers(asyncEnhancer))
+const store = configureStore({
+  reducer: persistedReducer,
+  preloadedState,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+})
+
 
 export const persistor = persistStore(store)
 export default store;
