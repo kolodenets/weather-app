@@ -9,7 +9,7 @@ const DateInfo = () => {
   const dispatch = useDispatch()
   const [mins, setMins] = useState(new Date().getMinutes())
   const dateSelector = useSelector((state) => state.date);
-  const apiSelector = useSelector((state) => state.api);
+  const serviceSelector = useSelector((state) => state.service);
   const citySelector = useSelector((state) => state.location);
   const interval = setInterval(() => {
     setMins(new Date().getMinutes())
@@ -21,7 +21,7 @@ const DateInfo = () => {
       if(new Date().toLocaleTimeString().substring(0,2) === '00') {
           dispatch({type: 'calendar/getTodaysTasks', payload: new Date().toLocaleDateString()})
         }
-      if(apiSelector.api === 'openweathermap'){
+      if(serviceSelector.service === 'openweathermap'){
         dispatch(changeCity(citySelector.name))
       }
       else {
