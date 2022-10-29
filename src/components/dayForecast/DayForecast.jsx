@@ -7,7 +7,7 @@ import { getDayofTheWeek } from "../../helpers/helpers";
 
 const DayForecast = ({ day }) => {
   const dateSelector = useSelector((state) => state.date);
-  const apiSelector = useSelector((state) => state.api);
+  const serviceSelector = useSelector((state) => state.service);
   const daySelector = useSelector((state) => state.weather);
   return (
     <div className={styles.dayForecast}>
@@ -24,7 +24,7 @@ const DayForecast = ({ day }) => {
       </p>
       <img
         src={
-          apiSelector.api === "openweathermap"
+          serviceSelector.service === "openweathermap"
             ? `https://openweathermap.org/img/wn/${daySelector[day].icon}@2x.png`
             : `https://www.weatherbit.io/static/img/icons/${daySelector[day].icon}.png`
         }

@@ -8,7 +8,7 @@ import styles from "./LocationInput.module.css";
 
 const LocationInput = () => {
   const [isValid, setIsValid] = useState(true)
-  const apiSelector = useSelector((state) => state.api);
+  const serviceSelector = useSelector((state) => state.service);
   const weatherSelector = useSelector((state) => state.weather);
   const dispatch = useDispatch();
   const [cityName, setCityname] = useState("");
@@ -18,7 +18,7 @@ const LocationInput = () => {
     const regExp = /^[а-яА-Яa-zA-Z.-]+(?:[\s-][/а-яА-Яa-zA-Z.]+)*$/gi;
     if(regExp.test(cityName.trim())) {
       setIsValid(true)
-      if (apiSelector.api === "openweathermap") {
+      if (serviceSelector.service === "openweathermap") {
       dispatch(changeCity(cityName));
     } else {
       dispatch(changeCityByWeatherBit(cityName));
