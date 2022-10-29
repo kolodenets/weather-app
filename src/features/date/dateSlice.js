@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { changeCity, changeCityByWeatherBit } from "../location/locationSlice";
+import { changeCity, changeCityByWeatherBit, getGeolocation} from "../location/locationSlice";
 
 const moment = require("moment-timezone");
 
@@ -69,8 +69,22 @@ const dateSlice = createSlice({
           .tz(action.payload[0].data[0].timezone)
           .format()
           .substring(0, 4);
-      });
+      })
+      .addCase(getGeolocation.fulfilled, (state, action) => {
+        state.hours =
+          (new Date().getUTCHours() +
+            Math.floor(action.payload[0].timezone_offset / 3600)) %
+          24;
+        state.timeZoneOffset = action.payload[0].timezone_offset / 3600;
+        state.day = new Date(action.payload[0].daily[0].dt * 1000).getDay();
+        state.date = new Date(action.payload[0].daily[0].dt * 1000).getDate();
+        state.month = new Date(action.payload[0].daily[0].dt * 1000).getMonth();
+        state.year = new Date(
+          action.payload[0].daily[0].dt * 1000
+        ).getFullYear();
+  });
   },
+  
 });
 
 export default dateSlice.reducer;
